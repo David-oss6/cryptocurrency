@@ -1,11 +1,77 @@
+* {
+  font-family: "Exo 2", sans-serif;
+}
+header {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+header h1 {
+  font-size: 3rem;
+}
+.bitcoin {
+  animation: rotate infinite 14s linear;
+  height: 45px;
+}
+
+/* HEADER ENDS******************** */
+
+.background {
+  min-height: 500px;
+  background-image: url("./img/blockchain-3277335_960_720.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.container {
+  width: 600px;
+  margin: auto;
+}
 .layout {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: start;
+  gap: 2rem;
+}
+
+.coinUl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.coinLi {
+  cursor: pointer;
+  font-weight: bolder;
+  color: #f7931a;
+  text-shadow: 0.5px 0.5px 0.5px black;
+  font-size: 1.5rem;
+  background-color: hsl(0, 0%, 100%, 60%);
+  border-radius: 8px;
+}
+.coinLi:hover {
+  transition: 0.2s linear;
+  transform: scale(1.1);
+  background-color: hsl(0, 0%, 100%, 90%);
 }
 
 .coinsResult {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: hsl(0, 0%, 100%, 50%);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
 }

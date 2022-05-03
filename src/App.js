@@ -1,6 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import bitcoin from "./img/bitcoin-img.png";
 
 function App() {
   const [data, setData] = useState(null);
@@ -13,10 +14,10 @@ function App() {
   });
   const [more, setMore] = useState(false);
 
-  // COMPARE START ***********************
   const [compare, setCompare] = useState(false);
   const [coinToCompare, setCoinToCompare] = useState(null);
   const [comparedCoin, setComparedCoin] = useState(null);
+  const [compareResult, setCompareResult] = useState();
 
   useEffect(() => {
     const options = {
@@ -48,10 +49,10 @@ function App() {
       });
   }, []);
   function handleChoice(coin) {
+    coin = coin.toUpperCase();
     let list = data.filter((crypto) => {
       return `${coin}USDT` === crypto.symbol;
     });
-
     if (list.length > 0) {
       setViewCoin(list);
     }
@@ -72,56 +73,92 @@ function App() {
     };
   }, []);
   const handleCompare = () => {
-    console.log(coinToCompare);
     setCoinToCompare(coinToCompare.toUpperCase());
     let list = data.filter((coin) => {
       return coin.symbol === `${coinToCompare}USDT`;
     });
     setComparedCoin(list);
-  };
-  const handleConsole = () => {
-    console.log(comparedCoin);
+    let compareList = data.filter((coin) => {
+      return `${coinToSearch}${coinToCompare}` === coin.symbol;
+    });
+    setCompareResult(compareList);
   };
 
   return (
-    <div className="layout">
-      <div>
-        <button onClick={() => handleConsole()}>console.log</button>
+    <div>
+      <header>
         <h1>Cryptocurrency</h1>
+        <img className="bitcoin" src={bitcoin} alt="bitcoin" />
+      </header>
+      <div className="background">
         {requestStatus.loading && <h2>LOADING...</h2>}
         {requestStatus.error && <button>RETRY</button>}
         {requestStatus.success && (
-          <div>
-            <div>
-              <input
-                onInput={(e) => setCoinToSearch(e.target.value.toUpperCase())}
-                maxLength={5}
-                type="text"
-              />
-              <button onClick={() => handleChoice(coinToSearch)}>Search</button>
-            </div>
-            <div>
-              <button onClick={() => handleChoice("BTC")}>See BTC</button>
-              <button onClick={() => handleChoice("ETH")}>See ETH</button>
-              <button
-                onClick={() => {
-                  setCompare(!compare);
-                }}
-              >
-                Compare with
-              </button>
-              {compare && (
+          <div className="container">
+            <div className="layout">
+              <div>
                 <div>
                   <input
                     onInput={(e) =>
-                      setCoinToCompare(e.target.value.toUpperCase())
+                      setCoinToSearch(e.target.value.toUpperCase())
                     }
                     maxLength={5}
                     type="text"
                   />
-                  <button onClick={() => handleCompare()}>Compare</button>
+                  <button onClick={() => handleChoice(coinToSearch)}>
+                    Search
+                  </button>
                 </div>
-              )}
+                <div>
+                  <button onClick={() => handleChoice("BTC")}>See BTC</button>
+                  <button onClick={() => handleChoice("ETH")}>See ETH</button>
+                  <button
+                    onClick={() => {
+                      setCompare(!compare);
+                    }}
+                  >
+                    Compare with
+                  </button>
+                  {compare && (
+                    <div>
+                      <input
+                        onInput={(e) =>
+                          setCoinToCompare(e.target.value.toUpperCase())
+                        }
+                        maxLength={5}
+                        type="text"
+                      />
+                      <button onClick={() => handleCompare()}>Compare</button>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <ul className="coinUl">
+                <li onClick={() => handleChoice("doge")} className="coinLi">
+                  DOGE-Dogecoin
+                </li>
+                <li onClick={() => handleChoice("dot")} className="coinLi">
+                  DOT-Polkadot
+                </li>
+                <li onClick={() => handleChoice("shib")} className="coinLi">
+                  SHIB-SHIBA INU
+                </li>
+                <li onClick={() => handleChoice("wbtc")} className="coinLi">
+                  WBTC-Wrapped Bitcoin
+                </li>
+                <li onClick={() => handleChoice("dai")} className="coinLi">
+                  DAI-Dai
+                </li>
+                <li onClick={() => handleChoice("matic")} className="coinLi">
+                  MATIC-Polygon
+                </li>
+                <li onClick={() => handleChoice("near")} className="coinLi">
+                  NEAR-NEAR
+                </li>
+                <li onClick={() => handleChoice("ltc")} className="coinLi">
+                  LTC-Litecoin
+                </li>
+              </ul>
             </div>
             <div className="coinsResult">
               {viewCoin ? (
@@ -176,6 +213,7 @@ function App() {
               ) : (
                 ""
               )}
+
               {comparedCoin && compare ? (
                 <div>
                   <table>
@@ -229,16 +267,6 @@ function App() {
           </div>
         )}
       </div>
-      <ul>
-        <li>DOGE-Dogecoin</li>
-        <li>DOT-Polkadot</li>
-        <li>SHIB-SHIBA INU</li>
-        <li>WBTC-Wrapped Bitcoin</li>
-        <li>DAI-Dai</li>
-        <li>MATIC-Polygon</li>
-        <li>NEAR-NEAR</li>
-        <li>LTC-Litecoin</li>
-      </ul>
     </div>
   );
 }
