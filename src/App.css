@@ -3,3 +3,9 @@
   flex-flow: row nowrap;
   justify-content: space-around;
 }
+
+.coinsResult {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}

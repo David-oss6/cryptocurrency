@@ -16,6 +16,7 @@ function App() {
   // COMPARE START ***********************
   const [compare, setCompare] = useState(false);
   const [coinToCompare, setCoinToCompare] = useState(null);
+  const [comparedCoin, setComparedCoin] = useState(null);
 
   useEffect(() => {
     const options = {
@@ -71,10 +72,15 @@ function App() {
     };
   }, []);
   const handleCompare = () => {
-    setCompare(true);
+    console.log(coinToCompare);
+    setCoinToCompare(coinToCompare.toUpperCase());
+    let list = data.filter((coin) => {
+      return coin.symbol === `${coinToCompare}USDT`;
+    });
+    setComparedCoin(list);
   };
   const handleConsole = () => {
-    console.log(data);
+    console.log(comparedCoin);
   };
 
   return (
@@ -117,29 +123,109 @@ function App() {
                 </div>
               )}
             </div>
-
-            {viewCoin ? (
-              <div>
-                <h4>{viewCoin[0].symbol}</h4>
-                <p>{viewCoin[0].lastPrice.slice(0, 9)} USDT</p>
-                {!more && <button onClick={() => setMore(true)}>more</button>}
-
-                {more && (
-                  <>
-                    <p>{viewCoin[0].highPrice.slice(0, 9)} high price</p>
-                    <p>{viewCoin[0].lowPrice.slice(0, 9)} low price</p>
-                    <p>
-                      {viewCoin[0].priceChangePercent.slice(0, 9)} % change{" "}
-                    </p>
-                    <p>{viewCoin[0].count} count</p>
-                    <p>{viewCoin[0].volume} volume</p>
-                    <p>{viewCoin[0].openPrice} open price</p>
-                  </>
-                )}
-              </div>
-            ) : (
-              ""
-            )}
+            <div className="coinsResult">
+              {viewCoin ? (
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <td>{viewCoin[0].symbol}</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{viewCoin[0].lowPrice.slice(0, 9)}</td>
+                        <td>high price</td>
+                      </tr>
+                      {more && (
+                        <>
+                          <tr>
+                            <td>{viewCoin[0].highPrice.slice(0, 9)}</td>
+                            <td>high price</td>
+                          </tr>
+                          <tr>
+                            <td>{viewCoin[0].lowPrice.slice(0, 9)} </td>
+                            <td>low price</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              {viewCoin[0].priceChangePercent.slice(0, 9)}
+                            </td>
+                            <td>% change </td>
+                          </tr>
+                          <tr>
+                            <td>{viewCoin[0].count}</td>
+                            <td>count</td>
+                          </tr>
+                          <tr>
+                            <td>{viewCoin[0].volume.slice(0, 9)}</td>
+                            <td>volume</td>
+                          </tr>
+                          <tr>
+                            <td>{viewCoin[0].openPrice.slice(0, 9)}</td>
+                            <td>open price</td>
+                          </tr>
+                        </>
+                      )}
+                    </tbody>
+                  </table>
+                  <button onClick={() => setMore(!more)}>
+                    {more ? "less" : "more"}
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
+              {comparedCoin && compare ? (
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <td>{comparedCoin[0].symbol}</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{comparedCoin[0].lowPrice.slice(0, 9)}</td>
+                        <td>high price</td>
+                      </tr>
+                      {more && (
+                        <>
+                          <tr>
+                            <td>{comparedCoin[0].highPrice.slice(0, 9)}</td>
+                            <td>high price</td>
+                          </tr>
+                          <tr>
+                            <td>{comparedCoin[0].lowPrice.slice(0, 9)} </td>
+                            <td>low price</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              {comparedCoin[0].priceChangePercent.slice(0, 9)}
+                            </td>
+                            <td>% change </td>
+                          </tr>
+                          <tr>
+                            <td>{comparedCoin[0].count}</td>
+                            <td>count</td>
+                          </tr>
+                          <tr>
+                            <td>{comparedCoin[0].volume.slice(0, 9)}</td>
+                            <td>volume</td>
+                          </tr>
+                          <tr>
+                            <td>{comparedCoin[0].openPrice.slice(0, 9)}</td>
+                            <td>open price</td>
+                          </tr>
+                        </>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         )}
       </div>
