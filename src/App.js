@@ -19,6 +19,35 @@ function App() {
   const [comparedCoin, setComparedCoin] = useState(null);
   const [compareResult, setCompareResult] = useState();
 
+  function getData() {
+    const options = {
+      method: "GET",
+      url: "https://binance43.p.rapidapi.com/ticker/24hr",
+      headers: {
+        "X-RapidAPI-Host": "binance43.p.rapidapi.com",
+        "X-RapidAPI-Key": "d1bf3d4f57msh7c755de0179c5e5p15ac54jsn4f0cdd7309b3",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        setData(response.data);
+        setRequestStatus({
+          loading: false,
+          success: true,
+          error: false,
+        });
+      })
+      .catch(function (error) {
+        setRequestStatus({
+          loading: false,
+          success: false,
+          error: true,
+        });
+        console.error(error);
+      });
+  }
   useEffect(() => {
     const options = {
       method: "GET",
@@ -40,6 +69,7 @@ function App() {
         });
       })
       .catch(function (error) {
+        getData();
         setRequestStatus({
           loading: false,
           success: false,
@@ -92,7 +122,7 @@ function App() {
       </header>
       <div className="background">
         {requestStatus.loading && <h2>LOADING...</h2>}
-        {requestStatus.error && <button>RETRY</button>}
+        {requestStatus.error && <p>RETRYING...</p>}
         {requestStatus.success && (
           <div className="container">
             <div className="layout">

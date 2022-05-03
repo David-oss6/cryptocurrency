@@ -138,10 +138,10 @@ header h1 {
   .coinsResult {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     color: black;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: bold;
     background-color: hsl(0, 0%, 100%, 50%);
   }
