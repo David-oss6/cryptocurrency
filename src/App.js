@@ -79,6 +79,7 @@ function App() {
       });
   }, []);
   function handleChoice(coin) {
+    console.log(data);
     coin = coin.toUpperCase();
     let list = data.filter((crypto) => {
       return `${coin}USDT` === crypto.symbol;
@@ -193,7 +194,7 @@ function App() {
             <div className="coinsResult">
               {viewCoin ? (
                 <div>
-                  <table>
+                  <table className="myTable">
                     <thead>
                       <tr>
                         <td>{viewCoin[0].symbol}</td>
@@ -201,8 +202,8 @@ function App() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>{viewCoin[0].lowPrice.slice(0, 9)}</td>
-                        <td>high price</td>
+                        <td>{viewCoin[0].lastPrice.slice(0, 9)}</td>
+                        <td>actual price</td>
                       </tr>
                       {more && (
                         <>

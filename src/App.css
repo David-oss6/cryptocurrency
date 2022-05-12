@@ -146,3 +146,6 @@ header h1 {
     background-color: hsl(0, 0%, 100%, 50%);
   }
 }
+.myTable {
+  font-size: 1.3rem;
+}
