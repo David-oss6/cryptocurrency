@@ -16,7 +16,9 @@ header h1 {
 }
 
 /* HEADER ENDS******************** */
-
+td {
+  white-space: nowrap;
+}
 .background {
   min-height: 500px;
   background-image: url("./img/blockchain-3277335_960_720.png");
@@ -136,10 +138,11 @@ header h1 {
   }
 
   .coinsResult {
+    margin-top: 3rem;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     color: black;
     font-size: 0.8rem;
     font-weight: bold;
@@ -148,4 +151,10 @@ header h1 {
 }
 .myTable {
   font-size: 1.3rem;
+}
+
+@media (max-width: 500px) {
+  .myTable {
+    font-size: 1rem;
+  }
 }

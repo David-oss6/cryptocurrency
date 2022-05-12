@@ -79,7 +79,6 @@ function App() {
       });
   }, []);
   function handleChoice(coin) {
-    console.log(data);
     coin = coin.toUpperCase();
     let list = data.filter((crypto) => {
       return `${coin}USDT` === crypto.symbol;
@@ -108,10 +107,15 @@ function App() {
     let list = data.filter((coin) => {
       return coin.symbol === `${coinToCompare}USDT`;
     });
-    setComparedCoin(list);
+    console.log(list);
+    if (list.length > 0) {
+      setComparedCoin(list);
+    }
+
     let compareList = data.filter((coin) => {
       return `${coinToSearch}${coinToCompare}` === coin.symbol;
     });
+
     setCompareResult(compareList);
   };
 
@@ -247,7 +251,7 @@ function App() {
 
               {comparedCoin && compare ? (
                 <div>
-                  <table>
+                  <table className="myTable">
                     <thead>
                       <tr>
                         <td>{comparedCoin[0].symbol}</td>
@@ -290,6 +294,9 @@ function App() {
                       )}
                     </tbody>
                   </table>
+                  <button onClick={() => setMore(!more)}>
+                    {more ? "less" : "more"}
+                  </button>
                 </div>
               ) : (
                 ""
