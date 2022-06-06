@@ -86,28 +86,14 @@ function App() {
     if (list.length > 0) {
       setViewCoin(list);
     }
-    setMore(false);
   }
 
-  useEffect(() => {
-    const listener = (event) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        console.log("Enter key was pressed. Run your function.");
-        event.preventDefault();
-        handleChoice(coinToSearch);
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
-  }, []);
   const handleCompare = () => {
     setCoinToCompare(coinToCompare.toUpperCase());
     let list = data.filter((coin) => {
       return coin.symbol === `${coinToCompare}USDT`;
     });
-    console.log(list);
+
     if (list.length > 0) {
       setComparedCoin(list);
     }
@@ -129,178 +115,182 @@ function App() {
         {requestStatus.loading && <h2>LOADING...</h2>}
         {requestStatus.error && <p>RETRYING...</p>}
         {requestStatus.success && (
-          <div className="container">
-            <div className="layout">
-              <div>
+          <div>
+            {/* className="container" */}
+            <div className="container">
+              <div className="layout">
                 <div>
-                  <input
-                    onInput={(e) =>
-                      setCoinToSearch(e.target.value.toUpperCase())
-                    }
-                    maxLength={5}
-                    type="text"
-                  />
-                  <button onClick={() => handleChoice(coinToSearch)}>
-                    Search
-                  </button>
+                  <div>
+                    <input
+                      onChange={(e) =>
+                        setCoinToSearch(e.target.value.toUpperCase())
+                      }
+                      maxLength={5}
+                      type="text"
+                    />
+                    <button onClick={() => handleChoice(coinToSearch)}>
+                      Search
+                    </button>
+                  </div>
+                  <div>
+                    <button onClick={() => handleChoice("BTC")}>See BTC</button>
+                    <button onClick={() => handleChoice("ETH")}>See ETH</button>
+                    <button
+                      onClick={() => {
+                        setCompare(!compare);
+                      }}
+                    >
+                      Compare with
+                    </button>
+                    {compare && (
+                      <div>
+                        <input
+                          onChange={(e) =>
+                            setCoinToCompare(e.target.value.toUpperCase())
+                          }
+                          maxLength={5}
+                          type="text"
+                        />
+                        <button onClick={() => handleCompare()}>Compare</button>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <button onClick={() => handleChoice("BTC")}>See BTC</button>
-                  <button onClick={() => handleChoice("ETH")}>See ETH</button>
-                  <button
-                    onClick={() => {
-                      setCompare(!compare);
-                    }}
-                  >
-                    Compare with
-                  </button>
-                  {compare && (
-                    <div>
-                      <input
-                        onInput={(e) =>
-                          setCoinToCompare(e.target.value.toUpperCase())
-                        }
-                        maxLength={5}
-                        type="text"
-                      />
-                      <button onClick={() => handleCompare()}>Compare</button>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <ul className="coinUl">
-                <li onClick={() => handleChoice("doge")} className="coinLi">
-                  DOGE-Dogecoin
-                </li>
-                <li onClick={() => handleChoice("dot")} className="coinLi">
-                  DOT-Polkadot
-                </li>
-                <li onClick={() => handleChoice("shib")} className="coinLi">
-                  SHIB-SHIBA INU
-                </li>
-                <li onClick={() => handleChoice("wbtc")} className="coinLi">
-                  WBTC-Wrapped Bitcoin
-                </li>
-                <li onClick={() => handleChoice("dai")} className="coinLi">
-                  DAI-Dai
-                </li>
-                <li onClick={() => handleChoice("matic")} className="coinLi">
-                  MATIC-Polygon
-                </li>
-                <li onClick={() => handleChoice("near")} className="coinLi">
-                  NEAR-NEAR
-                </li>
-                <li onClick={() => handleChoice("ltc")} className="coinLi">
-                  LTC-Litecoin
-                </li>
-              </ul>
-            </div>
-            <div className="coinsResult">
-              {viewCoin ? (
-                <div>
-                  <table className="myTable">
-                    <thead>
-                      <tr>
-                        <td>{viewCoin[0].symbol}</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{viewCoin[0].lastPrice.slice(0, 9)}</td>
-                        <td>actual price</td>
-                      </tr>
-                      {more && (
-                        <>
-                          <tr>
-                            <td>{viewCoin[0].highPrice.slice(0, 9)}</td>
-                            <td>high price</td>
-                          </tr>
-                          <tr>
-                            <td>{viewCoin[0].lowPrice.slice(0, 9)} </td>
-                            <td>low price</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              {viewCoin[0].priceChangePercent.slice(0, 9)}
-                            </td>
-                            <td>% change </td>
-                          </tr>
-                          <tr>
-                            <td>{viewCoin[0].count}</td>
-                            <td>count</td>
-                          </tr>
-                          <tr>
-                            <td>{viewCoin[0].volume.slice(0, 9)}</td>
-                            <td>volume</td>
-                          </tr>
-                          <tr>
-                            <td>{viewCoin[0].openPrice.slice(0, 9)}</td>
-                            <td>open price</td>
-                          </tr>
-                        </>
-                      )}
-                    </tbody>
-                  </table>
-                  <button onClick={() => setMore(!more)}>
-                    {more ? "less" : "more"}
-                  </button>
-                </div>
-              ) : (
-                ""
-              )}
 
-              {comparedCoin && compare ? (
-                <div>
-                  <table className="myTable">
-                    <thead>
-                      <tr>
-                        <td>{comparedCoin[0].symbol}</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{comparedCoin[0].lowPrice.slice(0, 9)}</td>
-                        <td>high price</td>
-                      </tr>
-                      {more && (
-                        <>
-                          <tr>
-                            <td>{comparedCoin[0].highPrice.slice(0, 9)}</td>
-                            <td>high price</td>
-                          </tr>
-                          <tr>
-                            <td>{comparedCoin[0].lowPrice.slice(0, 9)} </td>
-                            <td>low price</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              {comparedCoin[0].priceChangePercent.slice(0, 9)}
-                            </td>
-                            <td>% change </td>
-                          </tr>
-                          <tr>
-                            <td>{comparedCoin[0].count}</td>
-                            <td>count</td>
-                          </tr>
-                          <tr>
-                            <td>{comparedCoin[0].volume.slice(0, 9)}</td>
-                            <td>volume</td>
-                          </tr>
-                          <tr>
-                            <td>{comparedCoin[0].openPrice.slice(0, 9)}</td>
-                            <td>open price</td>
-                          </tr>
-                        </>
-                      )}
-                    </tbody>
-                  </table>
-                  <button onClick={() => setMore(!more)}>
-                    {more ? "less" : "more"}
-                  </button>
-                </div>
-              ) : (
-                ""
-              )}
+                <ul className="coinUl">
+                  <li onClick={() => handleChoice("doge")} className="coinLi">
+                    DOGE-Dogecoin
+                  </li>
+                  <li onClick={() => handleChoice("dot")} className="coinLi">
+                    DOT-Polkadot
+                  </li>
+                  <li onClick={() => handleChoice("shib")} className="coinLi">
+                    SHIB-SHIBA INU
+                  </li>
+
+                  <li onClick={() => handleChoice("dai")} className="coinLi">
+                    DAI-Dai
+                  </li>
+                  <li onClick={() => handleChoice("matic")} className="coinLi">
+                    MATIC-Polygon
+                  </li>
+                  <li onClick={() => handleChoice("near")} className="coinLi">
+                    NEAR-NEAR
+                  </li>
+                  <li onClick={() => handleChoice("ltc")} className="coinLi">
+                    LTC-Litecoin
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="container">
+              <div className="coinsResult">
+                {viewCoin ? (
+                  <div>
+                    <table className="myTable">
+                      <thead>
+                        <tr>
+                          <td>{viewCoin[0].symbol}</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{viewCoin[0].lastPrice.slice(0, 9)}</td>
+                          <td>actual price</td>
+                        </tr>
+                        {more && (
+                          <>
+                            <tr>
+                              <td>{viewCoin[0].highPrice.slice(0, 9)}</td>
+                              <td>high price</td>
+                            </tr>
+                            <tr>
+                              <td>{viewCoin[0].lowPrice.slice(0, 9)} </td>
+                              <td>low price</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                {viewCoin[0].priceChangePercent.slice(0, 9)}
+                              </td>
+                              <td>% change </td>
+                            </tr>
+                            <tr>
+                              <td>{viewCoin[0].count}</td>
+                              <td>count</td>
+                            </tr>
+                            <tr>
+                              <td>{viewCoin[0].volume.slice(0, 9)}</td>
+                              <td>volume</td>
+                            </tr>
+                            <tr>
+                              <td>{viewCoin[0].openPrice.slice(0, 9)}</td>
+                              <td>open price</td>
+                            </tr>
+                          </>
+                        )}
+                      </tbody>
+                    </table>
+                    <button onClick={() => setMore(!more)}>
+                      {more ? "less" : "more"}
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+
+                {comparedCoin && compare ? (
+                  <div>
+                    <table className="myTable">
+                      <thead>
+                        <tr>
+                          <td>{comparedCoin[0].symbol}</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{comparedCoin[0].lowPrice.slice(0, 9)}</td>
+                          <td>high price</td>
+                        </tr>
+                        {more && (
+                          <>
+                            <tr>
+                              <td>{comparedCoin[0].highPrice.slice(0, 9)}</td>
+                              <td>high price</td>
+                            </tr>
+                            <tr>
+                              <td>{comparedCoin[0].lowPrice.slice(0, 9)} </td>
+                              <td>low price</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                {comparedCoin[0].priceChangePercent.slice(0, 9)}
+                              </td>
+                              <td>% change </td>
+                            </tr>
+                            <tr>
+                              <td>{comparedCoin[0].count}</td>
+                              <td>count</td>
+                            </tr>
+                            <tr>
+                              <td>{comparedCoin[0].volume.slice(0, 9)}</td>
+                              <td>volume</td>
+                            </tr>
+                            <tr>
+                              <td>{comparedCoin[0].openPrice.slice(0, 9)}</td>
+                              <td>open price</td>
+                            </tr>
+                          </>
+                        )}
+                      </tbody>
+                    </table>
+                    <button onClick={() => setMore(!more)}>
+                      {more ? "less" : "more"}
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
         )}

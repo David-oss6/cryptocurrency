@@ -1,14 +1,20 @@
 * {
   font-family: "Exo 2", sans-serif;
 }
+html {
+  padding: 0;
+  margin: 0;
+}
 header {
   display: flex;
   gap: 30px;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(to bottom right, #05274b, #1a4d84);
 }
 header h1 {
   font-size: 3rem;
+  color: white;
 }
 .bitcoin {
   animation: rotate infinite 14s linear;
@@ -20,15 +26,16 @@ td {
   white-space: nowrap;
 }
 .background {
-  min-height: 500px;
-  background-image: url("./img/blockchain-3277335_960_720.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-position: center;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom left, #1a4d84, #05274b);
 }
 .container {
   width: 600px;
-  margin: auto;
+  height: 230px;
+  margin: 0 auto 20px auto;
+  padding: 2rem;
+  border-radius: 8px;
+  background-image: linear-gradient(to bottom right, #19508b, #2667ad);
 }
 .layout {
   display: flex;
@@ -37,7 +44,6 @@ td {
   align-items: start;
   gap: 2rem;
 }
-
 .coinUl {
   list-style: none;
   margin: 0;
@@ -48,14 +54,13 @@ td {
   font-weight: bolder;
   color: #f7931a;
   text-shadow: 0.5px 0.5px 0.5px black;
-  font-size: 1.5rem;
-  background-color: hsl(0, 0%, 100%, 60%);
+  font-size: 1.3rem;
+
   border-radius: 8px;
 }
 .coinLi:hover {
   transition: 0.2s linear;
   transform: scale(1.1);
-  background-color: hsl(0, 0%, 100%, 90%);
 }
 
 .coinsResult {
@@ -63,10 +68,9 @@ td {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  color: black;
+  color: white;
   font-size: 1rem;
   font-weight: bold;
-  background-color: hsl(0, 0%, 100%, 50%);
 }
 
 @keyframes rotate {
@@ -79,14 +83,12 @@ td {
 }
 
 @media (max-width: 800px) {
-  * {
-    font-family: "Exo 2", sans-serif;
-  }
   header {
     display: flex;
     gap: 30px;
     align-items: center;
     justify-content: center;
+    width: 100%;
   }
   header h1 {
     font-size: 2rem;
@@ -99,15 +101,13 @@ td {
   /* HEADER ENDS******************** */
 
   .background {
-    min-height: 500px;
-    background-image: url("./img/blockchain-3277335_960_720.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-position: center;
+    min-height: none;
+    width: auto;
   }
   .container {
-    width: 400px;
+    width: auto;
     margin: auto;
+    margin-bottom: 15px;
   }
   .layout {
     display: flex;
@@ -128,29 +128,26 @@ td {
     color: #f7931a;
     text-shadow: 0.5px 0.5px 0.5px black;
     font-size: 1rem;
-    background-color: hsl(0, 0%, 100%, 60%);
     border-radius: 8px;
   }
   .coinLi:hover {
     transition: 0.2s linear;
     transform: scale(1.1);
-    background-color: hsl(0, 0%, 100%, 90%);
   }
 
   .coinsResult {
-    margin-top: 3rem;
+    margin-top: 1rem;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: start;
-    color: black;
+    color: white;
     font-size: 0.8rem;
     font-weight: bold;
-    background-color: hsl(0, 0%, 100%, 50%);
   }
 }
 .myTable {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 500px) {
