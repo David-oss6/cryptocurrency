@@ -116,7 +116,6 @@ function App() {
         {requestStatus.error && <p>RETRYING...</p>}
         {requestStatus.success && (
           <div>
-            {/* className="container" */}
             <div className="container">
               <div className="layout">
                 <div>
@@ -190,41 +189,43 @@ function App() {
                     <table className="myTable">
                       <thead>
                         <tr>
-                          <td>{viewCoin[0].symbol}</td>
+                          <td className="resultCoinName">
+                            {viewCoin[0].symbol}
+                          </td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>{viewCoin[0].lastPrice.slice(0, 9)}</td>
-                          <td>actual price</td>
+                          <td className="coinPriceText">actual price</td>
                         </tr>
                         {more && (
                           <>
                             <tr>
                               <td>{viewCoin[0].highPrice.slice(0, 9)}</td>
-                              <td>high price</td>
+                              <td className="coinPriceText">high price</td>
                             </tr>
                             <tr>
                               <td>{viewCoin[0].lowPrice.slice(0, 9)} </td>
-                              <td>low price</td>
+                              <td className="coinPriceText">low price</td>
                             </tr>
                             <tr>
                               <td>
                                 {viewCoin[0].priceChangePercent.slice(0, 9)}
                               </td>
-                              <td>% change </td>
+                              <td className="coinPriceText">% change </td>
                             </tr>
                             <tr>
                               <td>{viewCoin[0].count}</td>
-                              <td>count</td>
+                              <td className="coinPriceText">count</td>
                             </tr>
                             <tr>
                               <td>{viewCoin[0].volume.slice(0, 9)}</td>
-                              <td>volume</td>
+                              <td className="coinPriceText">volume</td>
                             </tr>
                             <tr>
                               <td>{viewCoin[0].openPrice.slice(0, 9)}</td>
-                              <td>open price</td>
+                              <td className="coinPriceText">open price</td>
                             </tr>
                           </>
                         )}
@@ -243,41 +244,43 @@ function App() {
                     <table className="myTable">
                       <thead>
                         <tr>
-                          <td>{comparedCoin[0].symbol}</td>
+                          <td className="resultCoinName">
+                            {comparedCoin[0].symbol}
+                          </td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>{comparedCoin[0].lowPrice.slice(0, 9)}</td>
-                          <td>high price</td>
+                          <td className="coinPriceText">high price</td>
                         </tr>
                         {more && (
                           <>
                             <tr>
                               <td>{comparedCoin[0].highPrice.slice(0, 9)}</td>
-                              <td>high price</td>
+                              <td className="coinPriceText">high price</td>
                             </tr>
                             <tr>
                               <td>{comparedCoin[0].lowPrice.slice(0, 9)} </td>
-                              <td>low price</td>
+                              <td className="coinPriceText">low price</td>
                             </tr>
                             <tr>
                               <td>
                                 {comparedCoin[0].priceChangePercent.slice(0, 9)}
                               </td>
-                              <td>% change </td>
+                              <td className="coinPriceText">% change </td>
                             </tr>
                             <tr>
                               <td>{comparedCoin[0].count}</td>
-                              <td>count</td>
+                              <td className="coinPriceText">count</td>
                             </tr>
                             <tr>
                               <td>{comparedCoin[0].volume.slice(0, 9)}</td>
-                              <td>volume</td>
+                              <td className="coinPriceText">volume</td>
                             </tr>
                             <tr>
                               <td>{comparedCoin[0].openPrice.slice(0, 9)}</td>
-                              <td>open price</td>
+                              <td className="coinPriceText">open price</td>
                             </tr>
                           </>
                         )}
