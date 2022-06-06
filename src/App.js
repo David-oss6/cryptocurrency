@@ -118,7 +118,7 @@ function App() {
           <div>
             <div className="container">
               <div className="layout">
-                <div>
+                <div className="inputs_container">
                   <div className="buscar_container">
                     <input
                       className="buscar_input"
@@ -135,32 +135,43 @@ function App() {
                       Search
                     </button>
                   </div>
-                  <div>
-                    <button onClick={() => handleChoice("BTC")}>See BTC</button>
-                    <button onClick={() => handleChoice("ETH")}>See ETH</button>
-                    <button
-                      onClick={() => {
-                        setCompare(!compare);
-                      }}
-                    >
-                      Compare with
-                    </button>
-                    {compare && (
-                      <div>
-                        <input
-                          onChange={(e) =>
-                            setCoinToCompare(e.target.value.toUpperCase())
-                          }
-                          maxLength={5}
-                          type="text"
-                        />
-                        <button onClick={() => handleCompare()}>Compare</button>
-                      </div>
-                    )}
-                  </div>
+
+                  <button
+                    className="compareWith_btn"
+                    onClick={() => {
+                      setCompare(!compare);
+                    }}
+                  >
+                    Compare with
+                  </button>
+
+                  {compare && (
+                    <div className="compare_container">
+                      <input
+                        className="compare_input"
+                        onChange={(e) =>
+                          setCoinToCompare(e.target.value.toUpperCase())
+                        }
+                        maxLength={5}
+                        type="text"
+                      />
+                      <button
+                        className="compare_btn"
+                        onClick={() => handleCompare()}
+                      >
+                        Compare
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <ul className="coinUl">
+                  <li onClick={() => handleChoice("btc")} className="coinLi">
+                    BTC-Bitcoin
+                  </li>
+                  <li onClick={() => handleChoice("eth")} className="coinLi">
+                    ETH-Ethereum
+                  </li>
                   <li onClick={() => handleChoice("doge")} className="coinLi">
                     DOGE-Dogecoin
                   </li>

@@ -23,18 +23,52 @@ header h1 {
 
 /* HEADER ENDS******************** */
 /* INPUTS & BUTTONS START ********************/
+.inputs_container {
+}
 .buscar_container {
   display: flex;
   flex-flow: row nowrap;
 }
 .buscar_input {
-  max-width: 75px;
   text-align: center;
   outline: none;
   border: none;
+  border-radius: 4px 0 0 4px;
+  width: 10rem;
 }
 .buscar_btn {
+  color: white;
+  border: none;
+  background-color: #05274b;
+
+  width: 5rem;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
 }
+.compareWith_btn {
+  width: 10rem;
+  margin: 0 auto;
+}
+.compare_container {
+}
+
+.compare_input {
+  text-align: center;
+  outline: none;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  width: 10rem;
+}
+.compare_btn {
+  color: white;
+  border: none;
+  background-color: #05274b;
+
+  width: 5rem;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
 /* INPUTS & BUTTONS END ********************/
 td {
   white-space: nowrap;
@@ -54,9 +88,8 @@ td {
 .layout {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: start;
-  gap: 2rem;
   height: 100%;
 }
 .coinUl {
