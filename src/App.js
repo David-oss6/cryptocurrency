@@ -119,15 +119,19 @@ function App() {
             <div className="container">
               <div className="layout">
                 <div>
-                  <div>
+                  <div className="buscar_container">
                     <input
+                      className="buscar_input"
                       onChange={(e) =>
                         setCoinToSearch(e.target.value.toUpperCase())
                       }
                       maxLength={5}
                       type="text"
                     />
-                    <button onClick={() => handleChoice(coinToSearch)}>
+                    <button
+                      className="buscar_btn"
+                      onClick={() => handleChoice(coinToSearch)}
+                    >
                       Search
                     </button>
                   </div>

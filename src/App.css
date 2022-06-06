@@ -22,6 +22,20 @@ header h1 {
 }
 
 /* HEADER ENDS******************** */
+/* INPUTS & BUTTONS START ********************/
+.buscar_container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.buscar_input {
+  max-width: 75px;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+.buscar_btn {
+}
+/* INPUTS & BUTTONS END ********************/
 td {
   white-space: nowrap;
 }
@@ -43,11 +57,16 @@ td {
   justify-content: space-between;
   align-items: start;
   gap: 2rem;
+  height: 100%;
 }
 .coinUl {
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .coinLi {
   cursor: pointer;
@@ -212,6 +231,7 @@ td {
     transition: 0.2s linear;
     transform: scale(1.1);
   }
+
   .coinsResult {
     margin-top: 1rem;
     display: flex;
