@@ -112,7 +112,7 @@ function App() {
         <img className="bitcoin" src={bitcoin} alt="bitcoin" />
       </header>
       <div className="background">
-        {requestStatus.loading && <h2>LOADING...</h2>}
+        {requestStatus.loading && <h2 className="loading">LOADING...</h2>}
         {requestStatus.error && <p>RETRYING...</p>}
         {requestStatus.success && (
           <div>

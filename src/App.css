@@ -20,7 +20,10 @@ header h1 {
   animation: rotate infinite 14s linear;
   height: 45px;
 }
-
+.loading {
+  color: white;
+  text-align: center;
+}
 /* HEADER ENDS******************** */
 /* INPUTS & BUTTONS START ********************/
 .inputs_container {
