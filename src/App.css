@@ -31,6 +31,7 @@ header h1 {
 }
 .buscar_input {
   text-align: center;
+  text-transform: uppercase;
   outline: none;
   border: none;
   border-radius: 4px 0 0 4px;
@@ -40,20 +41,27 @@ header h1 {
   color: white;
   border: none;
   background-color: #05274b;
-
   width: 5rem;
+  padding: 3px 0;
   cursor: pointer;
   border-radius: 0 4px 4px 0;
 }
 .compareWith_btn {
-  width: 10rem;
+  width: 10.2rem;
   margin: 0 auto;
+  padding: 3px 0;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #05274b;
 }
 .compare_container {
 }
 
 .compare_input {
   text-align: center;
+  text-transform: uppercase;
   outline: none;
   border: none;
   border-radius: 4px 0 0 4px;
@@ -63,8 +71,8 @@ header h1 {
   color: white;
   border: none;
   background-color: #05274b;
-
   width: 5rem;
+  padding: 3px 0;
   cursor: pointer;
   border-radius: 0 4px 4px 0;
 }
@@ -106,7 +114,7 @@ td {
   font-weight: bolder;
   color: #f7931a;
   text-shadow: 0.5px 0.5px 0.5px black;
-  font-size: 1.3rem;
+  font-size: 1rem;
 
   border-radius: 8px;
 }
@@ -129,6 +137,15 @@ td {
   color: white;
   font-size: 1rem;
   font-weight: bold;
+}
+.moreLess_btn {
+  color: white;
+  border: none;
+  background-color: #05274b;
+  width: 5rem;
+  padding: 3px 0;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 @keyframes rotate {
@@ -241,7 +258,7 @@ td {
   }
   .layout {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: space-between;
     align-items: start;
     gap: 1rem;

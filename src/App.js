@@ -182,9 +182,6 @@ function App() {
                     SHIB-SHIBA INU
                   </li>
 
-                  <li onClick={() => handleChoice("dai")} className="coinLi">
-                    DAI-Dai
-                  </li>
                   <li onClick={() => handleChoice("matic")} className="coinLi">
                     MATIC-Polygon
                   </li>
@@ -193,6 +190,19 @@ function App() {
                   </li>
                   <li onClick={() => handleChoice("ltc")} className="coinLi">
                     LTC-Litecoin
+                  </li>
+
+                  <li onClick={() => handleChoice("xrp")} className="coinLi">
+                    XRP-XRP
+                  </li>
+                  <li onClick={() => handleChoice("ada")} className="coinLi">
+                    ADA-Cardano
+                  </li>
+                  <li onClick={() => handleChoice("sol")} className="coinLi">
+                    SOL-Solana
+                  </li>
+                  <li onClick={() => handleChoice("busd")} className="coinLi">
+                    BUSD-Binance USD
                   </li>
                 </ul>
               </div>
@@ -246,8 +256,11 @@ function App() {
                         )}
                       </tbody>
                     </table>
-                    <button onClick={() => setMore(!more)}>
-                      {more ? "less" : "more"}
+                    <button
+                      className="moreLess_btn"
+                      onClick={() => setMore(!more)}
+                    >
+                      {more ? "view less" : "more..."}
                     </button>
                   </div>
                 ) : (
@@ -301,8 +314,11 @@ function App() {
                         )}
                       </tbody>
                     </table>
-                    <button onClick={() => setMore(!more)}>
-                      {more ? "less" : "more"}
+                    <button
+                      className="moreLess_btn"
+                      onClick={() => setMore(!more)}
+                    >
+                      {more ? "view less" : "more..."}
                     </button>
                   </div>
                 ) : (
