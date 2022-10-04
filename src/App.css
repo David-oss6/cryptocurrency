@@ -49,6 +49,14 @@ header h1 {
   cursor: pointer;
   border-radius: 0 4px 4px 0;
 }
+.showHover {
+  padding: 1rem;
+  position: absolute;
+  background-color: white;
+}
+.hide {
+  display: none;
+}
 .compareWith_btn {
   width: 10.2rem;
   margin: 0 auto;

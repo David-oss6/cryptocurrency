@@ -127,7 +127,9 @@ function App() {
                       }
                       maxLength={5}
                       type="text"
+                      placeholder=" Crypto initials"
                     />
+
                     <button
                       className="buscar_btn"
                       onClick={() => handleChoice(coinToSearch)}
@@ -148,6 +150,7 @@ function App() {
                   {compare && (
                     <div className="compare_container">
                       <input
+                        placeholder=" Crypto initials"
                         className="compare_input"
                         onChange={(e) =>
                           setCoinToCompare(e.target.value.toUpperCase())
